@@ -2,5 +2,6 @@
 
 {% block content %}
 <h1>Index</h1>
-<a href="{% url 'index' %}">New Page</a>
+<p id="content"></p>
+<a id="htmx-link" href="{% url 'index' %}" hx-boost="true" hx-target="#content">New Page</a>
 {% endblock content %}

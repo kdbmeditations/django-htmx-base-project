@@ -1,4 +1,9 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'index.html')
+    if request.htmx:
+        print("Received HTMX request.")
+        return render(request, 'partial.html')
+    else:
+        print("Received non-HTMX request.")
+        return render(request, 'index.html')
