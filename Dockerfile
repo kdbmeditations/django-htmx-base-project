@@ -5,18 +5,26 @@ FROM python:3.10.12
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Create and set working directory
+# Create a non-root user and switch to it
+RUN useradd -m appuser
+USER appuser
+
+# Set the working directory
 WORKDIR /app
 
-# Add `requirements.txt` to the container
-COPY requirements.txt /app/
+# Copy the requirements file into the container
+COPY requirements.txt /tmp/
 
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc libpq-dev git \
-    && apt-get clean \
-    && pip install --upgrade pip \
-    && pip install -r requirements.txt
+# Install both system and Python dependencies
+RUN pip install --upgrade pip \
+    && python -m ensurepip \
+    && pip install -r /tmp/requirements.txt
 
-# Add the entire project to the container
-COPY . /app/
+# Copy the entire project to the container
+COPY --chown=appuser:appuser . /app/
+
+# Expose port 8000 for the app
+EXPOSE 8000
+
+# The default command to run. Adjust this if you're deploying an application.
+CMD ["/bin/bash"]
