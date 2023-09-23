@@ -1,6 +1,6 @@
-# Django HTXM Base Project
+# Django HTMX Base Project
 
-One Paragraph of project description goes here
+Example project which integrates the use of HTMX in a Django project.
 
 ## Getting Started
 
@@ -8,44 +8,68 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+Things you will need to have installed:
 ```
-Give examples
+Python 3.10.12
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+Navigate to the root of the project and execute the following command to create a virtual environment:
 ```
-Give the example
+python -m venv venv
 ```
 
-And repeat
-
+Activate the virtual environment:
 ```
-until finished
+source venv/bin/activate
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Install the related dependencies:
+```
+pip install -r requirements.txt
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
+The pytest testing framework was used. The unit tests can be executed by running the following command:
+```
+pytest -vvv
+```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Navigate into the base project directory from root:
+```
+cd baseproject
+```
+
+Start the development server:
+```
+python manage.py runserver
+```
+
+You should be able to access the web application at:
+```
+http://127.0.0.1:8000/
+```
+
+## Alternative Deployment with Docker (tested on Windows 10 + Docker Desktop)
+
+From the root directory of the project, execute the following command:
+```
+docker-compose up
+```
+
+You should be able to access the web application at:
+```
+http://127.0.0.1:8000/
+```
 
 ## Built With
 
-* Example
+* [Django](https://www.djangoproject.com/)
+* [HTMX](https://htmx.org/)
 
 ## License
 
@@ -53,4 +77,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Example acknowledgement
+* [Django](https://www.djangoproject.com/)
+* [HTMX](https://htmx.org/)
